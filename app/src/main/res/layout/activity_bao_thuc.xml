@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BaoThucActivity">
+
+    <!-- Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/toolbar"
+
+        android:title="Sleep Tracker"
+        android:titleTextColor="@color/white"
+        android:elevation="4dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_below="@id/toolbar">
+
+        <!-- Sleep Time Input -->
+        <EditText
+            android:id="@+id/et_sleep_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Giờ đi ngủ"
+            android:focusable="false"
+            android:padding="12dp"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            />
+
+        <!-- Wake Up Time Input -->
+        <EditText
+            android:id="@+id/et_wake_up_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Giờ thức dậy"
+            android:focusable="false"
+            android:padding="12dp"
+            android:layout_marginTop="16dp"
+
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            />
+
+        <!-- Save Button -->
+        <Button
+            android:id="@+id/btn_save_sleep"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Lưu lại"
+            android:textColor="@color/white"
+
+            android:layout_marginTop="20dp"
+            android:padding="10dp"
+            android:elevation="2dp" />
+
+        <!-- Sleep Duration Text -->
+        <TextView
+            android:id="@+id/tv_sleep_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Tổng thời gian ngủ:"
+            android:textSize="18sp"
+            android:padding="12dp"
+            android:layout_marginTop="20dp" />
+
+        <!-- Line Chart -->
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/lineChart"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center" />
+    </LinearLayout>
+</RelativeLayout>

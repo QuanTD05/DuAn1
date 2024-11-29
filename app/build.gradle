@@ -1,0 +1,90 @@
+plugins {
+    id 'com.android.application'
+    id 'com.google.gms.google-services'
+}
+
+android {
+    namespace 'fpoly.md19304.instagram'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "fpoly.md19304.instagram"
+        minSdk 29
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    signingConfigs {
+        release {
+            storeFile file("/path/to/your/keystore.jks")  // Đường dẫn đến file keystore của bạn
+            storePassword "your-store-password"          // Mật khẩu keystore của bạn
+            keyAlias "your-key-alias"                    // Bí danh (alias) của khóa
+            keyPassword "your-key-password"              // Mật khẩu khóa
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+
+
+    // Libraries cơ bản
+    implementation 'androidx.core:core-ktx:1.10.1'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
+    // Firebase BOM và các thư viện Firebase
+    implementation platform('com.google.firebase:firebase-bom:33.2.0')
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.firebase:firebase-database:20.1.0'
+    implementation 'com.google.firebase:firebase-storage:20.2.0'
+    implementation 'com.google.firebase:firebase-messaging:23.0.0'
+    implementation 'com.google.firebase:firebase-firestore'
+    implementation 'com.google.firebase:firebase-auth'
+
+    // Thư viện bổ sung
+    implementation 'com.github.bumptech.glide:glide:4.15.1'
+    implementation libs.activity
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.15.1'
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    // Libraries cho test
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    implementation 'com.google.android.material:material:1.9.0'  // Hoặc phiên bản mới nhất
+    implementation 'androidx.core:core-ktx:1.10.0' // Check for the latest version
+
+
+    implementation 'androidx.core:core-ktx:1.10.1'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    // Add this library
+    implementation('com.github.shts:StoriesProgressView:3.0.0') {
+        exclude group: "com.android.support", module: "support-compat"
+        exclude group: "com.android.support", module: "support-media-compat"
+    }
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+
+    implementation 'com.github.bumptech.glide:glide:4.13.2'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.1'
+
+
+}

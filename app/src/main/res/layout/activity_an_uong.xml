@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/anuong"
+    android:padding="16dp">
+
+
+    <TextView
+    android:id="@+id/titleText"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Điền thông tin"
+    android:textSize="24sp"
+    android:textColor="#333333"
+    android:layout_gravity="center"
+    android:paddingBottom="24dp"/>
+
+    <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Giới tính:"
+    android:textSize="18sp"
+    android:textStyle="bold"
+    android:textColor="#000000"/>
+
+    <EditText
+    android:id="@+id/genderInput"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="Nhập giới tính"
+    android:background="@drawable/edit_text_background"
+    android:padding="10dp"
+    android:layout_marginBottom="16dp"/>
+
+    <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Chiều cao:"
+        android:textStyle="bold"
+        android:textSize="18sp"
+    android:textColor="#000000"/>
+
+    <EditText
+    android:id="@+id/heightInput"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="Nhập chiều cao"
+    android:inputType="number"
+    android:background="@drawable/edit_text_background"
+    android:padding="10dp"
+    android:layout_marginBottom="16dp"/>
+
+
+    <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Cân nặng:"
+        android:textStyle="bold"
+        android:textSize="18sp"
+    android:textColor="#000000"/>
+
+    <EditText
+    android:id="@+id/weightInput"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="Nhập cân nặng"
+    android:inputType="number"
+    android:background="@drawable/edit_text_background"
+    android:padding="10dp"
+    android:layout_marginBottom="16dp"/>
+
+
+    <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text=". Hãy đảm bảo với thông tin cân nặng và chiều cao này để có thể chính xác trong việc tính calo!"
+    android:textSize="14sp"
+    android:textColor="#777777"
+    android:layout_marginBottom="24dp"/>
+
+
+    <Button
+    android:id="@+id/saveButton"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Lưu"
+    android:backgroundTint="#4CAF50"
+    android:textColor="#FFFFFF"
+    android:padding="12dp"
+    android:layout_gravity="center"/>
+    </LinearLayout>
