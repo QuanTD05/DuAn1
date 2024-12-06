@@ -37,6 +37,7 @@ import fpoly.md19304.instagram.TintucActivity;
 import fpoly.md19304.instagram.YogaActivity;
 
 public class HomeFragment extends Fragment {
+
     WebView webView;
     private ImageView imageProfile;
     private TextView fullname;

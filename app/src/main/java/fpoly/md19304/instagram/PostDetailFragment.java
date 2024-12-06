@@ -27,6 +27,7 @@ import fpoly.md19304.instagram.Model.Post;
 
 public class PostDetailFragment extends Fragment {
 
+
     String postid;
     private RecyclerView recyclerView;
     private PostAdapted postAdapted;

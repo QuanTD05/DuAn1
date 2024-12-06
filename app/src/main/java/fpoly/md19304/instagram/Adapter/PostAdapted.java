@@ -467,6 +467,7 @@ public class PostAdapted extends RecyclerView.Adapter<PostAdapted.ViewHolder> { 
         });
     }
 
+
     private void isLiked(String postid, final ImageView imageView) {
         final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Likes").child(postid);

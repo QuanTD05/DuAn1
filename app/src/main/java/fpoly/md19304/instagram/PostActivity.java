@@ -359,6 +359,7 @@ import com.google.firebase.storage.UploadTask;
 import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
 
+
 public class PostActivity extends AppCompatActivity {
 
     private static final int PICK_IMAGE_REQUEST = 1;

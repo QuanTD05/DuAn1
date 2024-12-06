@@ -1,6 +1,7 @@
 package fpoly.md19304.instagram.Model;
 
 public class Post {
+
     private String postid;
     private String postimage;
     private String description;

@@ -38,6 +38,7 @@ import fpoly.md19304.instagram.PostActivity;
 import fpoly.md19304.instagram.R;
 
 public class PostFragment extends Fragment {
+
         private RecyclerView recyclerView;
         private PostAdapted postAdapted;
         private List<Post> postLists;
