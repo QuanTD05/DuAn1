@@ -8,6 +8,8 @@
     android:background="@drawable/logo3"
     tools:context=".ThienActivity">
 
+
+
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

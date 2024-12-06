@@ -9,6 +9,7 @@
     android:orientation="vertical"
     tools:context=".YogaActivity">
 
+
     <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"

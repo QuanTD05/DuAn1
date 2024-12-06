@@ -59,4 +59,6 @@ public class ThienActivity extends AppCompatActivity {
         adapter = new VideoAdapter(videoList, this);
         recyclerView.setAdapter(adapter);
     }
+
+
 }

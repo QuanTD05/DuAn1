@@ -75,6 +75,9 @@ public class AnUongActivity extends AppCompatActivity {
         });
     }
 
+
+
+
     private void saveUserData() {
         String gender = genderInput.getText().toString().trim();
         String heightStr = heightInput.getText().toString().trim();

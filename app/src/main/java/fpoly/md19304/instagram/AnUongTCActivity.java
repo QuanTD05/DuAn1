@@ -21,6 +21,9 @@ public class AnUongTCActivity extends AppCompatActivity {
 
     private DatabaseReference userRef;
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

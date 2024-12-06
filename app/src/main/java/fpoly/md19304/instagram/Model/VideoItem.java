@@ -15,4 +15,7 @@ public class VideoItem {
     public String getVideoUrl() {
         return videoUrl;
     }
+
+
+
 }

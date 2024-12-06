@@ -61,4 +61,6 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
             videoWebView = itemView.findViewById(R.id.videoWebView);
         }
     }
+
+
 }

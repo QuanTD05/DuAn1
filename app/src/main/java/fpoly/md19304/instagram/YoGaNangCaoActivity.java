@@ -18,6 +18,8 @@ import java.util.List;
 import fpoly.md19304.instagram.Adapter.VideoAdapter;
 import fpoly.md19304.instagram.Model.VideoItem;
 
+
+
 public class YoGaNangCaoActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private VideoAdapter adapter;
