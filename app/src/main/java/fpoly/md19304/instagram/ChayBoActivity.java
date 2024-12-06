@@ -1,16 +1,21 @@
 package fpoly.md19304.instagram;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
@@ -41,6 +46,7 @@ public class ChayBoActivity extends AppCompatActivity implements SensorEventList
     private int currentStepCount = 0; // Bước chân hiện tại
     private int dailyStepCount = 0; // Bước chân trong ngày
     private Handler dailySaveHandler = new Handler();
+    private int initialStepCount = 0; // Đếm bước bắt đầu khi khởi động ứng dụng
 
     private DatabaseReference databaseReference;
 
@@ -79,6 +85,16 @@ public class ChayBoActivity extends AppCompatActivity implements SensorEventList
 
         // Lên lịch lưu bước chân hàng ngày
         scheduleDailySave();
+
+        // Kiểm tra và yêu cầu quyền truy cập cảm biến
+        checkPermissions();
+    }
+
+    private void checkPermissions() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACTIVITY_RECOGNITION)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACTIVITY_RECOGNITION}, 1);
+        }
     }
 
     @Override
@@ -100,7 +116,10 @@ public class ChayBoActivity extends AppCompatActivity implements SensorEventList
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (event.sensor.getType() == Sensor.TYPE_STEP_COUNTER) {
-            currentStepCount = (int) event.values[0];
+            if (initialStepCount == 0) {
+                initialStepCount = (int) event.values[0]; // Lưu số bước khi bắt đầu ứng dụng
+            }
+            currentStepCount = (int) event.values[0] - initialStepCount; // Tính số bước hiện tại
             dailyStepCount = currentStepCount;
 
             currentSteps.setText("Bước chân hiện tại: " + currentStepCount);

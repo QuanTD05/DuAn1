@@ -169,7 +169,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
-import fpoly.md19304.instagram.Fragment.NotificationFragment;
 import fpoly.md19304.instagram.Fragment.ProfileFragment;
 import fpoly.md19304.instagram.Model.Notification;
 import fpoly.md19304.instagram.Model.Post;

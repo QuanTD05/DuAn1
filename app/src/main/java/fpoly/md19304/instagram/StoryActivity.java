@@ -1,10 +1,13 @@
 package fpoly.md19304.instagram;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -14,6 +17,9 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,6 +42,10 @@ public class StoryActivity extends AppCompatActivity implements StoriesProgressV
     StoriesProgressView storiesProgressView;
     ImageView image, story_photo;
     TextView story_username;
+    LinearLayout r_seen;
+    TextView seen_number;
+    ImageView story_delete;
+
 
     List<String> images;
     List<String> storyids;
@@ -72,12 +82,27 @@ public class StoryActivity extends AppCompatActivity implements StoriesProgressV
             return insets;
         });
 
+        r_seen = findViewById(R.id.r_seen);
+        seen_number = findViewById(R.id.seen_number);
+        story_delete = findViewById(R.id.story_delete);
+
         storiesProgressView = findViewById(R.id.stories);
         image = findViewById(R.id.image);
         story_photo = findViewById(R.id.story_photo);
         story_username = findViewById(R.id.story_username);
 
+
+        r_seen.setVisibility(View.GONE);
+        story_delete.setVisibility(View.GONE);
+
+
         userid = getIntent().getStringExtra("userid");
+
+
+        if(userid.equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){
+            r_seen.setVisibility(View.VISIBLE);
+            story_delete.setVisibility(View.VISIBLE);
+        }
 
         getStories(userid);
         userInfo(userid);
@@ -102,11 +127,42 @@ public class StoryActivity extends AppCompatActivity implements StoriesProgressV
             }
         });
         skip.setOnTouchListener(onTouchListener);
+
+        r_seen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(StoryActivity.this, FollowersActivity.class);
+                intent.putExtra("id", userid);
+                intent.putExtra("storyid", storyids.get(counter));
+                intent.putExtra("title","views");
+                startActivity(intent);
+            }
+        });
+
+        story_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Story").child(userid).child(storyids.get(counter));
+                reference.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(StoryActivity.this,"Xóa!",Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                    }
+                });
+            }
+        });
+
     }
 
     @Override
     public void onNext() {
         Glide.with(getApplicationContext()).load(images.get(++counter)).into(image);
+
+        addView(storyids.get(counter));
+        seenNumber(storyids.get(counter));
 
     }
 
@@ -114,6 +170,7 @@ public class StoryActivity extends AppCompatActivity implements StoriesProgressV
     public void onPrev() {
         if ((counter -1) <0) return;
         Glide.with(getApplicationContext()).load(images.get(--counter)).into(image);
+        seenNumber(storyids.get(counter));
     }
 
     @Override
@@ -165,6 +222,11 @@ public class StoryActivity extends AppCompatActivity implements StoriesProgressV
 
                 Glide.with(getApplicationContext()).load(images.get(counter)).into(image);
 
+
+
+                addView(storyids.get(counter));
+                seenNumber(storyids.get(counter));
+
             }
 
             @Override
@@ -192,4 +254,33 @@ public class StoryActivity extends AppCompatActivity implements StoriesProgressV
             }
         });
     }
+    private void addView(String storyId) {
+        FirebaseDatabase.getInstance().getReference("Story")
+                .child(userid)
+                .child(storyId)
+                .child("views")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .setValue(true);
+    }
+
+    private void seenNumber(String storyId) {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Story")
+                .child(userid)
+                .child(storyId)
+                .child("views");
+
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                seen_number.setText("" + dataSnapshot.getChildrenCount());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Handle database error
+            }
+        });
+    }
+
+
 }
