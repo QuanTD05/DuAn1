@@ -17,7 +17,6 @@
         android:layout_margin="30dp"
         app:cardCornerRadius="30dp"
         android:layout_gravity="center"
-        android:backgroundTint="@drawable/lavender_round"
         app:cardElevation="20dp">
 
         <LinearLayout
@@ -90,9 +89,6 @@
                 android:id="@+id/txt_login"
                 android:textColor="#716A6A"
                 android:layout_marginTop="10dp"/>
-
-
-
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
